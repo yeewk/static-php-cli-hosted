@@ -172,6 +172,7 @@ jobs:
           fi
 
       - name: "Deploy to self-hosted OSS"
+        if: env.AWS_KEY_ID != ''
         uses: static-php/upload-s3-action@v1.0.0
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
