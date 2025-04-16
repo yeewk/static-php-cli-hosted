@@ -18,7 +18,7 @@ jobs:
         runner:
           # "ubuntu-latest"
           #- "macos-13"
-          - "ubuntu-24.04-arm"
+          - "ubuntu-22.04-arm"
           #- "macos-14"
         combination:
           #- minimal
@@ -57,7 +57,7 @@ jobs:
               echo "ARCH=x86_64" >> "$GITHUB_OUTPUT"
               echo "CMD=bin/spc-alpine-docker" >> "$GITHUB_OUTPUT"
               ;;
-            ubuntu-24.04-arm)
+            ubuntu-22.04-arm)
               echo "OS=linux" >> "$GITHUB_OUTPUT"
               echo "ARCH=aarch64" >> "$GITHUB_OUTPUT"
               echo CMD="SPC_USE_ARCH=aarch64 bin/spc-alpine-docker" >> "$GITHUB_OUTPUT"
