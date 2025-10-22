@@ -1,4 +1,4 @@
-name: Build Self-Hosted PHP Binary (Linux x86-64)
+name: Build Self-Hosted PHP Binary (Linux x86-64) glibc
 
 on:
   workflow_dispatch:
