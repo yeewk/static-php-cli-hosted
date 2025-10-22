@@ -68,11 +68,6 @@ jobs:
               echo "ARCH=x86_64" >> "$GITHUB_OUTPUT"
               echo "CMD=bin/spc" >> "$GITHUB_OUTPUT"
               ;;
-            macos-13)
-              echo "OS=macos" >> "$GITHUB_OUTPUT"
-              echo "ARCH=x86_64" >> "$GITHUB_OUTPUT"
-              echo "CMD=bin/spc" >> "$GITHUB_OUTPUT"
-              ;;
             macos-14)
               echo "OS=macos" >> "$GITHUB_OUTPUT"
               echo "ARCH=aarch64" >> "$GITHUB_OUTPUT"
@@ -171,7 +166,7 @@ jobs:
             cp -r buildroot/license dist/
             cp buildroot/build-extensions.json dist/
             cp buildroot/build-libraries.json dist/
-            echo "# Note\n\nCurrent distribution uses extensions:\n\n${{ steps.process-env.outputs.EXTENSIONS }}\n\nUsing compile command:\n\n  bin/spc build --build-cli --build-micro --build-fpm ${{ steps.process-env.outputs.EXTENSIONS }} --debug --with-upx-pack" > dist/README.txt
+            echo "# Note\n\nCurrent distribution uses extensions:\n\n${{ steps.process-env.outputs.EXTENSIONS }}\n\nUsing compile command:\n\n  bin/spc-gnu-docker build --build-cli --build-micro --build-fpm ${{ steps.process-env.outputs.EXTENSIONS }} --debug --with-upx-pack" > dist/README.txt
           fi
 
       - name: "Deploy to self-hosted OSS"
@@ -188,7 +183,7 @@ jobs:
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: php-${{ matrix.php-version }}-${{ matrix.combination }}-${{ steps.process-env.outputs.OS }}-${{ steps.process-env.outputs.ARCH }}
+          name: php-${{ matrix.php-version }}-${{ matrix.combination }}-${{ steps.process-env.outputs.OS }}-${{ steps.process-env.outputs.ARCH }}-glibc
           path: |
             tmp_dist/php
             tmp_dist/php-fpm
