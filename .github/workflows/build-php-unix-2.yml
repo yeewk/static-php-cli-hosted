@@ -22,8 +22,8 @@ jobs:
         combination:
           #- minimal
           #- bulk
-          #- common
-          - gnu-bulk
+          - common+
+          #- gnu-bulk
         exclude:
           - { runner: "ubuntu-latest", combination: "gnu-bulk" }
           - { runner: "ubuntu-24.04-arm", combination: "gnu-bulk" }
@@ -44,8 +44,8 @@ jobs:
             minimal)
               echo "EXTENSIONS=iconv,pcntl,posix,mbstring,filter,tokenizer,phar" >> "$GITHUB_OUTPUT"
               ;;
-            common)
-              echo "EXTENSIONS=bcmath,bz2,calendar,ctype,curl,dom,exif,fileinfo,filter,ftp,gd,gmp,iconv,xml,mbstring,mbregex,mysqlnd,openssl,pcntl,pdo,pdo_mysql,pdo_sqlite,pdo_pgsql,pgsql,phar,posix,redis,session,simplexml,soap,sockets,sqlite3,tokenizer,xmlwriter,xmlreader,zlib,zip" >> "$GITHUB_OUTPUT"
+            common+)
+              echo "EXTENSIONS=bcmath,bz2,calendar,ctype,curl,dom,exif,fileinfo,filter,ftp,gd,gmp,iconv,xml,mbstring,mbregex,mongodb,mysqli,mysqlnd,openssl,pcntl,pdo,pdo_mysql,pdo_sqlite,pdo_pgsql,pgsql,phar,posix,redis,session,simplexml,soap,sockets,sqlite3,tokenizer,xmlwriter,xmlreader,zlib,zip" >> "$GITHUB_OUTPUT"
               echo "SUGGEST=--with-suggested-libs" >> "$GITHUB_OUTPUT"
               ;;
             bulk|gnu-bulk)
@@ -59,6 +59,7 @@ jobs:
               echo "OS=linux" >> "$GITHUB_OUTPUT"
               echo "ARCH=x86_64" >> "$GITHUB_OUTPUT"
               echo "CMD=bin/spc-alpine-docker" >> "$GITHUB_OUTPUT"
+              #echo "BUILD_OPTIONS=--build-cli" >> "$GITHUB_OUTPUT"
               ;;
             ubuntu-24.04-arm)
               echo "OS=linux" >> "$GITHUB_OUTPUT"
@@ -143,7 +144,7 @@ jobs:
             UPX=--with-upx-pack
           fi
 
-          #--build-micro --build-fpm
+          #--build-cli --build-micro --build-fpm
           ${{ steps.process-env.outputs.CMD }} build --build-cli ${{ steps.process-env.outputs.EXTENSIONS }} --debug $UPX ${{ steps.process-env.outputs.SUGGEST }}
 
           # Copy out from buildroot, because docker build has different permission
