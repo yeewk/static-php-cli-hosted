@@ -45,7 +45,7 @@ jobs:
               echo "EXTENSIONS=iconv,pcntl,posix,mbstring,filter,tokenizer,phar" >> "$GITHUB_OUTPUT"
               ;;
             common+)
-              echo "EXTENSIONS=bcmath,bz2,calendar,ctype,curl,dom,exif,fileinfo,filter,ftp,gd,gmp,iconv,xml,mbstring,mbregex,mongodb,mysqli,mysqlnd,openssl,pcntl,pdo,pdo_mysql,pdo_sqlite,pdo_pgsql,pgsql,phar,posix,redis,session,simplexml,soap,sockets,sqlite3,tokenizer,xmlwriter,xmlreader,zlib,zip" >> "$GITHUB_OUTPUT"
+              echo "EXTENSIONS=bcmath,bz2,calendar,ctype,curl,dom,exif,ffi,fileinfo,filter,ftp,gd,gmp,iconv,xml,mbstring,mbregex,mongodb,mysqli,mysqlnd,openssl,pcntl,pdo,pdo_mysql,pdo_sqlite,pdo_pgsql,pgsql,phar,posix,redis,session,simplexml,soap,sockets,sqlite3,tokenizer,xmlwriter,xmlreader,zlib,zip" >> "$GITHUB_OUTPUT"
               echo "SUGGEST=--with-suggested-libs" >> "$GITHUB_OUTPUT"
               ;;
             bulk|gnu-bulk)
@@ -145,7 +145,7 @@ jobs:
           fi
 
           #--build-cli --build-micro --build-fpm
-          ${{ steps.process-env.outputs.CMD }} build --build-cli ${{ steps.process-env.outputs.EXTENSIONS }} --debug $UPX ${{ steps.process-env.outputs.SUGGEST }}
+          ${{ steps.process-env.outputs.CMD }} build --build-cli --build-fpm ${{ steps.process-env.outputs.EXTENSIONS }} --debug $UPX ${{ steps.process-env.outputs.SUGGEST }}
 
           # Copy out from buildroot, because docker build has different permission
           mkdir -p tmp_dist/
