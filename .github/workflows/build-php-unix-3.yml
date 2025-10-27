@@ -202,13 +202,6 @@ jobs:
           name: php-${{ matrix.php-version }}-${{ matrix.combination }}-${{ steps.process-env.outputs.OS }}-${{ steps.process-env.outputs.ARCH }}
           path: |
             tmp_dist/php
-          if-no-files-found: error
-
-      - name: "Upload Optional Artifact"
-        uses: actions/upload-artifact@v4
-        with:
-          name: php-${{ matrix.php-version }}-${{ matrix.combination }}-${{ steps.process-env.outputs.OS }}-${{ steps.process-env.outputs.ARCH }}
-          path: |
             tmp_dist/php-fpm
-            tmp_dist/micro.sfx
-          if-no-files-found: ignore
+            tmp_dist/micro.sfx                       
+          if-no-files-found: warn
