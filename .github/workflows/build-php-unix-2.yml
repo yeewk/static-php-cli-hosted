@@ -98,7 +98,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: crazywhalecc/static-php-cli
-          ref: main
+          ref: henderkes-patch-1
 
       - name: "Setup PHP"
         if: ${{ !startsWith(matrix.runner, 'ubuntu') }}
