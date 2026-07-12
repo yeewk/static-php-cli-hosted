@@ -47,7 +47,7 @@ jobs:
               echo "SUGGEST=--with-suggests" >> "$GITHUB_OUTPUT"
               ;;
           esac
-          
+
           echo "CMD=bin/spc" >> "$GITHUB_OUTPUT"
 
           case "${{ matrix.runner }}" in
@@ -58,7 +58,7 @@ jobs:
             ubuntu-24.04-arm)
               echo "OS=linux" >> "$GITHUB_OUTPUT"
               echo "ARCH=aarch64" >> "$GITHUB_OUTPUT"
-              echo "UPX=--with-upx-pack" >> "$GITHUB_OUTPUT
+              echo "UPX=--with-upx-pack" >> "$GITHUB_OUTPUT"
               ;;
             ubuntu-22.04)
               echo "OS=linux" >> "$GITHUB_OUTPUT"
@@ -185,6 +185,7 @@ jobs:
             tmp_dist/php-fpm
             tmp_dist/micro.sfx
           if-no-files-found: warn
+
       - name: "Upload logs on failure"
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
