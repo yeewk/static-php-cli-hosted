@@ -156,7 +156,7 @@ jobs:
           ls -la dist
 
       - name: "Add build metadata"
-        if: ${{ matrix.php-version == '8.4' && (matrix.runner == 'ubuntu-latest' || matrix.runner == 'ubuntu-24.04 || matrix.runner == 'ubuntu-22.04') }}
+        if: ${{ matrix.php-version == '8.4' && (matrix.runner == 'ubuntu-latest' || matrix.runner == 'ubuntu-24.04' || matrix.runner == 'ubuntu-22.04') }}
         shell: bash
         run: |
           cp -r buildroot/license dist/
