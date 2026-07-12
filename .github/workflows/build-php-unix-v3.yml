@@ -12,7 +12,7 @@ jobs:
       matrix:
         php-version:
           - "8.4"
-          - "8.5"
+          #- "8.5"
         runner:
           #- "ubuntu-latest"
           #- "ubuntu-24.04-arm"
@@ -47,6 +47,7 @@ jobs:
               echo "SUGGEST=--with-suggests" >> "$GITHUB_OUTPUT"
               ;;
           esac
+          
           echo "CMD=bin/spc" >> "$GITHUB_OUTPUT"
 
           case "${{ matrix.runner }}" in
